@@ -1,0 +1,920 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Student Transfer Experts — Smarter U.S. College Transfers</title>
+<meta name="description" content="StudentTransferExperts.com helps community college students and international students transfer to accredited U.S. universities with expert guidance, scholarship matching, and flexible pathways.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+
+<style>
+/* === SHARED DESIGN SYSTEM === */
+/* =============================================
+   StudentTransferExperts.com — Shared Design System
+   ============================================= */
+
+
+/* TOKENS */
+:root {
+  --navy:         #0E1F4D;
+  --navy-mid:     #162A5E;
+  --navy-light:   #1E3A7A;
+  --teal:         #1FC8A0;
+  --teal-dark:    #16A082;
+  --teal-light:   #E6FAF5;
+  --teal-mid:     #B3EFE2;
+  --purple:       #7C3AED;
+  --purple-light: #EEF2FF;
+  --gold:         #F4B942;
+  --gold-light:   #FEF3C7;
+  --white:        #FFFFFF;
+  --off-white:    #F5F8FF;
+  --gray-50:      #F8FAFC;
+  --gray-100:     #F1F5F9;
+  --text-dark:    #0E1F4D;
+  --text-mid:     #475578;
+  --text-light:   #7A8BAA;
+  --border:       #E2E8F4;
+  --shadow-sm:    0 2px 12px rgba(14,31,77,0.07);
+  --shadow:       0 4px 28px rgba(14,31,77,0.10);
+  --shadow-lg:    0 16px 60px rgba(14,31,77,0.16);
+  --shadow-xl:    0 32px 80px rgba(14,31,77,0.20);
+  --radius-sm:    8px;
+  --radius:       12px;
+  --radius-lg:    20px;
+  --radius-xl:    28px;
+}
+
+/* RESET */
+*, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+html { scroll-behavior:smooth; font-size:16px; }
+body {
+  font-family:'DM Sans', sans-serif;
+  color:var(--text-dark);
+  background:var(--white);
+  overflow-x:hidden;
+  line-height:1.6;
+  -webkit-font-smoothing:antialiased;
+}
+img { max-width:100%; display:block; }
+a { text-decoration:none; }
+
+/* =============================================
+   NAVIGATION
+   ============================================= */
+.nav {
+  position:fixed; top:0; left:0; right:0; z-index:1000;
+  height:70px;
+  background:rgba(14,31,77,0.98);
+  backdrop-filter:blur(16px);
+  -webkit-backdrop-filter:blur(16px);
+  border-bottom:1px solid rgba(255,255,255,0.07);
+  display:flex; align-items:center; justify-content:space-between;
+  padding:0 5%;
+}
+.nav-logo {
+  font-family:'Sora', sans-serif;
+  font-size:1.08rem; font-weight:800;
+  color:var(--white); letter-spacing:-0.01em;
+  display:flex; align-items:center; gap:2px;
+}
+.nav-logo .accent { color:var(--teal); }
+.nav-links {
+  display:flex; align-items:center; gap:6px;
+}
+.nav-links a {
+  color:rgba(255,255,255,0.68);
+  font-size:0.875rem; font-weight:500;
+  padding:8px 14px; border-radius:var(--radius-sm);
+  transition:color 0.18s, background 0.18s;
+}
+.nav-links a:hover { color:var(--white); background:rgba(255,255,255,0.07); }
+.nav-links a.active { color:var(--teal); }
+.nav-links a.nav-btn {
+  background:var(--teal); color:var(--navy) !important;
+  font-weight:700; padding:9px 22px;
+  border-radius:var(--radius-sm);
+  margin-left:8px;
+  transition:background 0.18s, transform 0.15s;
+}
+.nav-links a.nav-btn:hover { background:#18b590; transform:translateY(-1px); }
+
+.nav-hamburger { display:none; flex-direction:column; gap:5px; cursor:pointer; padding:4px; }
+.nav-hamburger span { display:block; width:24px; height:2px; background:white; border-radius:2px; transition:all 0.3s; }
+
+/* Mobile nav drawer */
+.nav-drawer {
+  display:none;
+  position:fixed; top:70px; left:0; right:0;
+  background:rgba(14,31,77,0.99);
+  padding:20px 5%; flex-direction:column; gap:4px;
+  border-bottom:1px solid rgba(255,255,255,0.07);
+  z-index:999;
+}
+.nav-drawer.open { display:flex; }
+.nav-drawer a {
+  color:rgba(255,255,255,0.75); font-size:0.95rem; font-weight:500;
+  padding:12px 16px; border-radius:var(--radius-sm);
+  transition:background 0.15s;
+}
+.nav-drawer a:hover { background:rgba(255,255,255,0.07); color:white; }
+.nav-drawer a.active { color:var(--teal); }
+.nav-drawer a.nav-btn-mobile {
+  background:var(--teal); color:var(--navy) !important;
+  font-weight:700; text-align:center; margin-top:8px;
+}
+
+/* =============================================
+   FOOTER
+   ============================================= */
+.footer {
+  background:#07101F;
+  padding:64px 5% 36px;
+}
+.footer-top {
+  display:grid; grid-template-columns:2fr 1fr 1fr 1fr;
+  gap:48px; margin-bottom:48px;
+  padding-bottom:48px;
+  border-bottom:1px solid rgba(255,255,255,0.08);
+}
+.footer-brand-col {}
+.footer-logo {
+  font-family:'Sora', sans-serif;
+  font-size:1.05rem; font-weight:800;
+  color:var(--white); margin-bottom:14px; display:block;
+}
+.footer-logo .accent { color:var(--teal); }
+.footer-tagline { font-size:0.88rem; color:rgba(255,255,255,0.45); line-height:1.65; max-width:260px; margin-bottom:20px; }
+.footer-contact { display:flex; flex-direction:column; gap:8px; }
+.footer-contact a {
+  color:rgba(255,255,255,0.55); font-size:0.85rem;
+  display:flex; align-items:center; gap:8px;
+  transition:color 0.18s;
+}
+.footer-contact a:hover { color:var(--teal); }
+.footer-contact-icon { font-size:0.9rem; }
+.footer-col h4 {
+  font-family:'Sora', sans-serif;
+  font-size:0.8rem; font-weight:700;
+  text-transform:uppercase; letter-spacing:0.1em;
+  color:rgba(255,255,255,0.35); margin-bottom:16px;
+}
+.footer-col ul { list-style:none; display:flex; flex-direction:column; gap:10px; }
+.footer-col ul li a {
+  color:rgba(255,255,255,0.6); font-size:0.88rem;
+  transition:color 0.18s;
+}
+.footer-col ul li a:hover { color:var(--teal); }
+.footer-bottom {
+  display:flex; align-items:center; justify-content:space-between;
+  gap:20px; flex-wrap:wrap;
+}
+.footer-copy { font-size:0.82rem; color:rgba(255,255,255,0.3); }
+.footer-copy span { color:var(--teal); }
+
+/* =============================================
+   BUTTONS
+   ============================================= */
+.btn {
+  display:inline-flex; align-items:center; gap:8px;
+  padding:14px 28px; border-radius:var(--radius-sm);
+  font-weight:700; font-size:0.95rem;
+  cursor:pointer; border:none;
+  transition:all 0.2s; white-space:nowrap;
+}
+.btn-teal { background:var(--teal); color:var(--navy); }
+.btn-teal:hover { background:var(--teal-dark); transform:translateY(-2px); box-shadow:0 8px 28px rgba(31,200,160,0.35); }
+.btn-navy { background:var(--navy); color:var(--white); }
+.btn-navy:hover { background:var(--navy-mid); transform:translateY(-2px); box-shadow:0 8px 28px rgba(14,31,77,0.3); }
+.btn-white { background:var(--white); color:var(--navy); }
+.btn-white:hover { background:var(--off-white); transform:translateY(-2px); }
+.btn-outline-white { background:transparent; color:var(--white); border:1.5px solid rgba(255,255,255,0.35); }
+.btn-outline-white:hover { background:rgba(255,255,255,0.08); border-color:rgba(255,255,255,0.6); }
+.btn-outline-navy { background:transparent; color:var(--navy); border:1.5px solid var(--border); }
+.btn-outline-navy:hover { border-color:var(--navy); background:var(--off-white); }
+.btn-lg { padding:17px 36px; font-size:1.02rem; }
+.btn-sm { padding:9px 18px; font-size:0.85rem; }
+
+/* =============================================
+   TYPOGRAPHY UTILITIES
+   ============================================= */
+.section-tag {
+  font-size:0.75rem; font-weight:700;
+  letter-spacing:0.12em; text-transform:uppercase;
+  color:var(--teal); display:block; margin-bottom:12px;
+}
+.section-tag.purple { color:var(--purple); }
+.section-tag.gold { color:var(--gold); }
+
+.h1 { font-family:'Sora', sans-serif; font-size:clamp(2.4rem,5vw,3.8rem); font-weight:800; line-height:1.1; letter-spacing:-0.02em; }
+.h2 { font-family:'Sora', sans-serif; font-size:clamp(1.9rem,3.5vw,2.8rem); font-weight:800; line-height:1.15; letter-spacing:-0.015em; }
+.h3 { font-family:'Sora', sans-serif; font-size:clamp(1.4rem,2.5vw,1.9rem); font-weight:700; line-height:1.25; }
+.h4 { font-family:'Sora', sans-serif; font-size:1.1rem; font-weight:700; line-height:1.35; }
+
+.text-white { color:var(--white); }
+.text-white-70 { color:rgba(255,255,255,0.70); }
+.text-white-50 { color:rgba(255,255,255,0.50); }
+.text-teal { color:var(--teal); }
+.text-navy { color:var(--navy); }
+.text-mid { color:var(--text-mid); }
+
+/* =============================================
+   LAYOUT
+   ============================================= */
+.container { max-width:1160px; margin:0 auto; padding:0 5%; }
+.section { padding:90px 5%; }
+.section-sm { padding:64px 5%; }
+.section-lg { padding:120px 5%; }
+.pt-nav { padding-top:70px; }
+
+.grid-2 { display:grid; grid-template-columns:1fr 1fr; gap:48px; }
+.grid-3 { display:grid; grid-template-columns:repeat(3,1fr); gap:24px; }
+.grid-4 { display:grid; grid-template-columns:repeat(4,1fr); gap:24px; }
+.align-center { align-items:center; }
+.text-center { text-align:center; }
+
+/* =============================================
+   CARDS
+   ============================================= */
+.card {
+  background:var(--white);
+  border:1px solid var(--border);
+  border-radius:var(--radius-lg);
+  padding:32px 28px;
+  transition:all 0.25s;
+}
+.card:hover { box-shadow:var(--shadow-lg); transform:translateY(-4px); }
+.card-dark {
+  background:rgba(255,255,255,0.05);
+  border:1px solid rgba(255,255,255,0.1);
+  border-radius:var(--radius-lg);
+  padding:32px 28px;
+  transition:all 0.25s;
+}
+.card-dark:hover { background:rgba(255,255,255,0.08); transform:translateY(-3px); }
+
+/* Check list */
+.check-list { list-style:none; display:flex; flex-direction:column; gap:10px; }
+.check-list li { display:flex; gap:10px; align-items:flex-start; font-size:0.9rem; color:var(--text-mid); line-height:1.55; }
+.check-list li::before { content:'✓'; display:flex; align-items:center; justify-content:center; width:20px; height:20px; border-radius:50%; background:var(--teal-light); color:var(--teal-dark); font-size:0.68rem; font-weight:800; flex-shrink:0; margin-top:1px; }
+.check-list.dark li { color:rgba(255,255,255,0.65); }
+.check-list.dark li::before { background:rgba(31,200,160,0.15); color:var(--teal); }
+
+/* Pill / badge */
+.pill { display:inline-flex; align-items:center; gap:6px; padding:5px 14px; border-radius:100px; font-size:0.78rem; font-weight:700; }
+.pill-teal { background:var(--teal-light); color:var(--teal-dark); }
+.pill-navy { background:rgba(14,31,77,0.08); color:var(--navy); }
+.pill-gold { background:var(--gold-light); color:#92400E; }
+.pill-purple { background:var(--purple-light); color:var(--purple); }
+.pill-white { background:rgba(255,255,255,0.12); color:rgba(255,255,255,0.8); border:1px solid rgba(255,255,255,0.15); }
+
+/* =============================================
+   ANIMATIONS
+   ============================================= */
+@keyframes fadeUp {
+  from { opacity:0; transform:translateY(24px); }
+  to   { opacity:1; transform:translateY(0); }
+}
+@keyframes fadeIn {
+  from { opacity:0; }
+  to   { opacity:1; }
+}
+@keyframes slideRight {
+  from { transform:scaleX(0); }
+  to   { transform:scaleX(1); }
+}
+.anim-1 { animation:fadeUp 0.55s 0.0s ease both; }
+.anim-2 { animation:fadeUp 0.55s 0.1s ease both; }
+.anim-3 { animation:fadeUp 0.55s 0.2s ease both; }
+.anim-4 { animation:fadeUp 0.55s 0.3s ease both; }
+
+/* =============================================
+   RESPONSIVE
+   ============================================= */
+@media (max-width:960px) {
+  .grid-4 { grid-template-columns:repeat(2,1fr); }
+  .footer-top { grid-template-columns:1fr 1fr; gap:36px; }
+}
+@media (max-width:768px) {
+  .nav-links { display:none; }
+  .nav-hamburger { display:flex; }
+  .grid-2, .grid-3 { grid-template-columns:1fr; }
+  .grid-4 { grid-template-columns:1fr 1fr; }
+  .footer-top { grid-template-columns:1fr; gap:28px; }
+  .section { padding:64px 5%; }
+  .section-lg { padding:80px 5%; }
+  .btn-lg { padding:15px 28px; font-size:0.95rem; }
+}
+@media (max-width:480px) {
+  .grid-4 { grid-template-columns:1fr; }
+}
+
+/* === END SHARED === */
+
+/* ── HOME-SPECIFIC ── */
+
+/* HERO */
+.hero {
+  background:var(--navy);
+  min-height:100vh;
+  display:flex; flex-direction:column; justify-content:center;
+  padding:100px 5% 80px;
+  position:relative; overflow:hidden;
+}
+.hero-glow-1 {
+  position:absolute; top:-200px; right:-100px;
+  width:700px; height:700px; border-radius:50%;
+  background:radial-gradient(circle, rgba(31,200,160,0.13) 0%, transparent 65%);
+  pointer-events:none;
+}
+.hero-glow-2 {
+  position:absolute; bottom:-300px; left:-200px;
+  width:600px; height:600px; border-radius:50%;
+  background:radial-gradient(circle, rgba(42,63,114,0.5) 0%, transparent 70%);
+  pointer-events:none;
+}
+.hero-grid {
+  display:grid; grid-template-columns:1fr 1fr;
+  gap:64px; align-items:center;
+  max-width:1160px; margin:0 auto; width:100%;
+  position:relative;
+}
+.hero-badge {
+  display:inline-flex; align-items:center; gap:8px;
+  background:rgba(31,200,160,0.12); border:1px solid rgba(31,200,160,0.28);
+  color:var(--teal); padding:7px 18px; border-radius:100px;
+  font-size:0.8rem; font-weight:700; letter-spacing:0.04em;
+  text-transform:uppercase; margin-bottom:24px;
+}
+.hero h1 { color:var(--white); margin-bottom:20px; }
+.hero h1 em { color:var(--teal); font-style:normal; }
+.hero-sub { font-size:1.08rem; color:rgba(255,255,255,0.68); line-height:1.75; max-width:520px; margin-bottom:36px; }
+.hero-btns { display:flex; gap:14px; flex-wrap:wrap; }
+
+/* AUDIENCE SPLIT CARD */
+.hero-right { position:relative; }
+.split-card {
+  background:rgba(255,255,255,0.05);
+  border:1px solid rgba(255,255,255,0.1);
+  border-radius:var(--radius-xl); overflow:hidden;
+  backdrop-filter:blur(8px);
+}
+.split-card-inner { display:grid; grid-template-columns:1fr 1fr; }
+.split-half {
+  padding:32px 28px; cursor:pointer;
+  transition:background 0.2s;
+  text-decoration:none; display:block;
+}
+.split-half:first-child { border-right:1px solid rgba(255,255,255,0.08); }
+.split-half:hover { background:rgba(255,255,255,0.05); }
+.split-half-tag { font-size:0.72rem; font-weight:700; letter-spacing:0.1em; text-transform:uppercase; margin-bottom:12px; display:block; }
+.split-half:first-child .split-half-tag { color:var(--teal); }
+.split-half:nth-child(2) .split-half-tag { color:#A78BFA; }
+.split-half h3 { font-family:'Sora', sans-serif; font-size:1rem; font-weight:700; color:var(--white); margin-bottom:8px; line-height:1.35; }
+.split-half p { font-size:0.82rem; color:rgba(255,255,255,0.55); line-height:1.6; margin-bottom:14px; }
+.split-half-arrow { font-size:0.82rem; font-weight:700; }
+.split-half:first-child .split-half-arrow { color:var(--teal); }
+.split-half:nth-child(2) .split-half-arrow { color:#A78BFA; }
+.split-card-footer {
+  padding:16px 28px;
+  border-top:1px solid rgba(255,255,255,0.07);
+  background:rgba(0,0,0,0.15);
+  text-align:center;
+  font-size:0.8rem; color:rgba(255,255,255,0.4);
+}
+
+/* STATS BAND */
+.stats-band {
+  background:var(--teal);
+  padding:0 5%;
+  display:grid; grid-template-columns:repeat(4,1fr);
+}
+.stat-item {
+  padding:32px 16px; text-align:center;
+  display:flex; flex-direction:column; align-items:center; gap:6px;
+  position:relative;
+}
+.stat-item + .stat-item::before {
+  content:''; position:absolute; left:0; top:25%; bottom:25%;
+  width:1px; background:rgba(14,31,77,0.15);
+}
+.stat-num { font-family:'Sora',sans-serif; font-size:2.2rem; font-weight:800; color:var(--navy); line-height:1; }
+.stat-label { font-size:0.82rem; font-weight:500; color:rgba(14,31,77,0.72); }
+
+/* SOLUTIONS */
+.solutions { background:var(--off-white); }
+.solutions-header { max-width:620px; margin-bottom:56px; }
+.solutions-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:22px; }
+.sol-card {
+  background:var(--white);
+  border:1px solid var(--border);
+  border-radius:var(--radius-lg);
+  padding:30px 26px;
+  transition:all 0.25s;
+  position:relative; overflow:hidden;
+}
+.sol-card::before {
+  content:''; position:absolute; bottom:0; left:0; right:0; height:3px;
+  background:var(--teal); transform:scaleX(0); transform-origin:left;
+  transition:transform 0.3s ease;
+}
+.sol-card:hover { box-shadow:var(--shadow-lg); transform:translateY(-4px); }
+.sol-card:hover::before { transform:scaleX(1); }
+.sol-icon { font-size:1.8rem; margin-bottom:16px; }
+.sol-card h3 { font-family:'Sora',sans-serif; font-size:1rem; font-weight:700; color:var(--navy); margin-bottom:8px; }
+.sol-card p { font-size:0.88rem; color:var(--text-mid); line-height:1.65; }
+.sol-audience { display:inline-block; padding:3px 10px; border-radius:100px; font-size:0.72rem; font-weight:700; margin-top:12px; }
+
+/* PATHWAYS */
+.pathways { background:var(--navy); }
+.pathways-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:22px; margin-top:52px; }
+.pathway-card {
+  border-radius:var(--radius-lg); padding:34px 28px;
+  border:1px solid rgba(255,255,255,0.08);
+  background:rgba(255,255,255,0.04);
+  transition:all 0.25s;
+  display:flex; flex-direction:column;
+}
+.pathway-card:hover { background:rgba(31,200,160,0.07); border-color:rgba(31,200,160,0.3); transform:translateY(-4px); }
+.pathway-num { font-size:0.72rem; font-weight:700; letter-spacing:0.12em; text-transform:uppercase; color:var(--teal); margin-bottom:16px; }
+.pathway-card h3 { font-family:'Sora',sans-serif; font-size:1.15rem; font-weight:700; color:var(--white); margin-bottom:10px; }
+.pathway-card p { font-size:0.88rem; color:rgba(255,255,255,0.58); line-height:1.65; margin-bottom:auto; padding-bottom:20px; }
+.pathway-tag {
+  display:inline-block; padding:4px 14px; border-radius:100px;
+  font-size:0.75rem; font-weight:700;
+  background:rgba(31,200,160,0.12); color:var(--teal);
+  border:1px solid rgba(31,200,160,0.2);
+}
+.pathway-link { display:inline-flex; align-items:center; gap:6px; color:var(--teal); font-size:0.85rem; font-weight:700; margin-top:16px; transition:gap 0.2s; }
+.pathway-card:hover .pathway-link { gap:10px; }
+
+/* TESTIMONIALS */
+.testimonials {}
+.test-tabs { display:flex; gap:10px; margin-bottom:40px; flex-wrap:wrap; }
+.test-tab {
+  padding:9px 22px; border-radius:100px;
+  font-size:0.85rem; font-weight:600; cursor:pointer;
+  border:1.5px solid var(--border); background:var(--white); color:var(--text-mid);
+  transition:all 0.2s;
+}
+.test-tab.active { background:var(--navy); color:var(--white); border-color:var(--navy); }
+.test-grid { display:grid; grid-template-columns:repeat(2,1fr); gap:20px; }
+.test-card {
+  border:1px solid var(--border); border-radius:var(--radius-lg); padding:28px;
+  transition:all 0.25s; display:flex; flex-direction:column; gap:14px;
+}
+.test-card:hover { box-shadow:var(--shadow); transform:translateY(-2px); }
+.test-chip { width:fit-content; }
+.test-quote { font-size:0.9rem; color:var(--text-mid); line-height:1.7; font-style:italic; }
+.test-cite { font-size:0.85rem; font-weight:700; color:var(--navy); }
+
+/* JOURNEY SECTION */
+.journey { background:var(--off-white); }
+.journey-inner { max-width:900px; margin:0 auto; }
+.journey-steps { display:grid; grid-template-columns:repeat(5,1fr); gap:8px; align-items:start; margin-top:52px; }
+.jstep { display:flex; flex-direction:column; align-items:center; text-align:center; }
+.jstep-circle {
+  width:52px; height:52px; border-radius:50%;
+  background:var(--navy); border:3px solid var(--border);
+  display:flex; align-items:center; justify-content:center;
+  font-size:1.3rem; margin-bottom:14px; position:relative;
+  transition:all 0.2s;
+}
+.jstep:hover .jstep-circle { border-color:var(--teal); background:rgba(31,200,160,0.1); transform:scale(1.08); }
+.jstep h4 { font-family:'Sora',sans-serif; font-size:0.85rem; font-weight:700; color:var(--navy); margin-bottom:4px; }
+.jstep p { font-size:0.78rem; color:var(--text-mid); line-height:1.5; }
+.journey-arrow { font-size:1.3rem; color:var(--teal-mid); display:flex; align-items:center; justify-content:center; height:52px; margin-bottom:14px; }
+
+/* DISCOVER SECTION */
+.discover { background:var(--white); }
+.discover-grid { display:grid; grid-template-columns:1fr 1fr; gap:28px; margin-top:52px; }
+.discover-card {
+  border-radius:var(--radius-xl); padding:40px;
+  position:relative; overflow:hidden;
+  display:flex; flex-direction:column; gap:16px;
+  transition:transform 0.25s;
+}
+.discover-card:hover { transform:translateY(-4px); }
+.discover-card.cc { background:var(--off-white); border:1px solid var(--border); }
+.discover-card.intl { background:var(--navy); }
+.discover-card h3 { font-family:'Sora',sans-serif; font-size:1.25rem; font-weight:700; line-height:1.3; }
+.discover-card.cc h3 { color:var(--navy); }
+.discover-card.intl h3 { color:var(--white); }
+.discover-card p { font-size:0.9rem; line-height:1.7; }
+.discover-card.cc p { color:var(--text-mid); }
+.discover-card.intl p { color:rgba(255,255,255,0.62); }
+.dc-features { display:flex; flex-direction:column; gap:8px; }
+.dc-feat { display:flex; gap:8px; align-items:center; font-size:0.85rem; }
+.dc-feat-dot { width:18px; height:18px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:0.62rem; font-weight:800; flex-shrink:0; }
+
+/* FINAL CTA */
+.final-cta {
+  background:linear-gradient(135deg, var(--navy) 0%, #0d2a4a 100%);
+  padding:100px 5%;
+  text-align:center; position:relative; overflow:hidden;
+}
+.final-cta::before {
+  content:''; position:absolute; top:50%; left:50%; transform:translate(-50%,-50%);
+  width:800px; height:800px; border-radius:50%;
+  background:radial-gradient(circle, rgba(31,200,160,0.08) 0%, transparent 65%);
+}
+.final-cta-inner { position:relative; max-width:640px; margin:0 auto; }
+.final-cta h2 { color:var(--white); margin-bottom:14px; }
+.final-cta p { color:rgba(255,255,255,0.65); font-size:1.05rem; margin-bottom:36px; line-height:1.72; }
+.final-cta-btns { display:flex; gap:16px; justify-content:center; flex-wrap:wrap; }
+.final-cta-sub { font-size:0.85rem; color:rgba(255,255,255,0.35); margin-top:20px; }
+
+@media(max-width:960px) {
+  .hero-grid { grid-template-columns:1fr; gap:40px; }
+  .hero-right { display:none; }
+  .stats-band { grid-template-columns:repeat(2,1fr); }
+  .solutions-grid, .pathways-grid { grid-template-columns:1fr; }
+  .test-grid, .discover-grid { grid-template-columns:1fr; }
+  .journey-steps { grid-template-columns:repeat(3,1fr); gap:20px; }
+  .journey-arrow { display:none; }
+  .split-card-inner { grid-template-columns:1fr; }
+  .split-half:first-child { border-right:none; border-bottom:1px solid rgba(255,255,255,0.08); }
+}
+@media(max-width:600px) {
+  .stats-band { grid-template-columns:1fr 1fr; }
+  .journey-steps { grid-template-columns:repeat(2,1fr); }
+}
+</style>
+</head>
+<body>
+
+<!-- ═══════════════════════ NAV ═══════════════════════ -->
+<nav class="nav">
+  <a href="index.html" class="nav-logo">Student Transfer<span class="accent">Experts</span></a>
+  <div class="nav-links">
+    <a href="index.html" class="active">Home</a>
+    <a href="program.html">Program</a>
+    <a href="transfers.html">Transfers</a>
+    <a href="for-colleges.html">For Colleges</a>
+    <a href="https://www.studenttransferexperts.com/new-blog" target="_blank">Blog</a>
+    <a href="https://form.typeform.com/to/HRz41hcQ" target="_blank" class="nav-btn">Start Now</a>
+  </div>
+  <div class="nav-hamburger" onclick="toggleNav()">
+    <span></span><span></span><span></span>
+  </div>
+</nav>
+<div class="nav-drawer" id="navDrawer">
+  <a href="index.html" class="active">Home</a>
+  <a href="program.html">Program</a>
+  <a href="transfers.html">Transfers</a>
+  <a href="for-colleges.html">For Colleges</a>
+  <a href="https://www.studenttransferexperts.com/new-blog" target="_blank">Blog</a>
+  <a href="https://form.typeform.com/to/HRz41hcQ" target="_blank" class="nav-btn-mobile">Start Now</a>
+</div>
+
+<!-- ═══════════════════════ HERO ═══════════════════════ -->
+<section class="hero pt-nav">
+  <div class="hero-glow-1"></div>
+  <div class="hero-glow-2"></div>
+  <div class="hero-grid">
+    <div>
+      <div class="hero-badge anim-1">🎓 Smarter U.S. College Transfers</div>
+      <h1 class="h1 anim-2">Your Path to a <em>Bachelor's Degree</em> Starts Here</h1>
+      <p class="hero-sub anim-3">Whether you're a community college student ready to transfer or an international student navigating U.S. university options — we guide every step from credits to completion.</p>
+      <div class="hero-btns anim-4">
+        <a href="https://form.typeform.com/to/HRz41hcQ" target="_blank" class="btn btn-teal btn-lg">Start My Transfer Journey</a>
+        <a href="https://gpt.studenttransferexperts.com/" target="_blank" class="btn btn-outline-white">Ask STE GPT</a>
+      </div>
+    </div>
+    <div class="hero-right anim-4">
+      <div class="split-card">
+        <div class="split-card-inner">
+          <a href="transfers.html#cc" class="split-half">
+            <span class="split-half-tag">🏫 Community College</span>
+            <h3>Transferring from a CC?</h3>
+            <p>Move your credits to a 4-year university with expert support, scholarship matching, and flexible degree formats.</p>
+            <span class="split-half-arrow">Explore CC Pathways →</span>
+          </a>
+          <a href="transfers.html#intl" class="split-half">
+            <span class="split-half-tag">✈️ International Student</span>
+            <h3>Already in the U.S. on a Visa?</h3>
+            <p>SEVIS-compliant transfers, CPT/OPT-eligible programs, and visa status protection throughout.</p>
+            <span class="split-half-arrow">See Visa-Compliant Options →</span>
+          </a>
+        </div>
+        <div class="split-card-footer">Personalized roadmap • Scholarship matching • Expert advisors</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════ STATS BAND ═══════════════════════ -->
+<div class="stats-band">
+  <div class="stat-item">
+    <span class="stat-num">12M+</span>
+    <span class="stat-label">Community college students in the U.S.</span>
+  </div>
+  <div class="stat-item">
+    <span class="stat-num">~80%</span>
+    <span class="stat-label">Intend to transfer to a 4-year university</span>
+  </div>
+  <div class="stat-item">
+    <span class="stat-num">&lt;17%</span>
+    <span class="stat-label">Actually earn a bachelor's degree</span>
+  </div>
+  <div class="stat-item">
+    <span class="stat-num">2×</span>
+    <span class="stat-label">Improvement in transfer metrics at STE partner colleges</span>
+  </div>
+</div>
+
+<!-- ═══════════════════════ SOLUTIONS ═══════════════════════ -->
+<section class="solutions section">
+  <div class="solutions-header">
+    <span class="section-tag">What We Solve</span>
+    <h2 class="h2">No Matter Your Situation,<br>We Have You Covered</h2>
+    <p style="color:var(--text-mid);font-size:1.02rem;margin-top:14px;line-height:1.72;">Transfer challenges come in every shape. Here's what we solve every day — for both domestic and international students.</p>
+  </div>
+  <div class="solutions-grid">
+    <div class="sol-card">
+      <div class="sol-icon">📚</div>
+      <h3>Transfer Credits That Count</h3>
+      <p>Navigate articulation agreements and credit evaluations so you arrive at your new university with the credits you've already earned.</p>
+      <span class="sol-audience pill pill-teal">All Students</span>
+    </div>
+    <div class="sol-card">
+      <div class="sol-icon">💰</div>
+      <h3>Scholarships & Financial Aid</h3>
+      <p>Scholarship matching and transfer-specific financial aid navigation so no eligible funding goes unclaimed. Tuition from $9K–12K/year.</p>
+      <span class="sol-audience pill pill-teal">All Students</span>
+    </div>
+    <div class="sol-card">
+      <div class="sol-icon">🌐</div>
+      <h3>Online & Hybrid Degree Options</h3>
+      <p>Access fully accredited online and hybrid formats that fit your work schedule, family life, and location — without relocating.</p>
+      <span class="sol-audience pill" style="background:#FFF3CD;color:#7A5000;">CC Students</span>
+    </div>
+    <div class="sol-card">
+      <div class="sol-icon">🎯</div>
+      <h3>Career-Focused Programs</h3>
+      <p>STEM, Business, Health, Education — we match you with programs built for today's job market, not just the nearest available option.</p>
+      <span class="sol-audience pill pill-teal">All Students</span>
+    </div>
+    <div class="sol-card">
+      <div class="sol-icon">🛡️</div>
+      <h3>Visa-Compliant Transfers</h3>
+      <p>SEVIS-compliant transfer process, Change of Status support, CPT and OPT-eligible pathways for F-1 and other visa holders.</p>
+      <span class="sol-audience pill pill-purple">International Students</span>
+    </div>
+    <div class="sol-card">
+      <div class="sol-icon">💪</div>
+      <h3>Overcome Academic Setbacks</h3>
+      <p>Low GPA, academic probation, failed visa — we know the flexible-entry programs and recovery pathways that can still get you to your degree.</p>
+      <span class="sol-audience pill pill-teal">All Students</span>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════ THREE PATHWAYS ═══════════════════════ -->
+<section class="pathways section">
+  <span class="section-tag">Transfer Pathways</span>
+  <h2 class="h2 text-white">Three Flexible Pathways<br>for Every Student's Life</h2>
+  <p style="color:rgba(255,255,255,0.62);font-size:1.02rem;margin-top:14px;max-width:560px;line-height:1.72;">Not one-size-fits-all. We match you to the format that genuinely fits your schedule, responsibilities, and goals.</p>
+  <div class="pathways-grid">
+    <div class="pathway-card">
+      <div class="pathway-num">Pathway 01</div>
+      <h3>Traditional Transfer</h3>
+      <p>Full-time enrollment at a 4-year university. Ideal for students ready to commit to a campus experience with access to full scholarship and financial aid options.</p>
+      <span class="pathway-tag">Full Campus Experience</span>
+      <a href="program.html#formats" class="pathway-link">See Programs →</a>
+    </div>
+    <div class="pathway-card">
+      <div class="pathway-num">Pathway 02</div>
+      <h3>Hybrid + Residency</h3>
+      <p>Primarily online with one 3–5 day on-campus intensive per semester. Keep your job, your city, and your family — while still earning a real campus-connected degree.</p>
+      <span class="pathway-tag">⭐ Most Popular</span>
+      <a href="program.html#formats" class="pathway-link">See Programs →</a>
+    </div>
+    <div class="pathway-card">
+      <div class="pathway-num">Pathway 03</div>
+      <h3>100% Online Degree</h3>
+      <p>Fully accredited online degrees from respected universities. Maximum flexibility for working adults, caregivers, and students at any location.</p>
+      <span class="pathway-tag">Maximum Flexibility</span>
+      <a href="program.html#formats" class="pathway-link">See Programs →</a>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════ JOURNEY ═══════════════════════ -->
+<section class="journey section">
+  <div class="journey-inner text-center">
+    <span class="section-tag">Your Transfer Journey</span>
+    <h2 class="h2">From First Question to<br>First Semester</h2>
+    <p style="color:var(--text-mid);margin-top:14px;font-size:1rem;line-height:1.7;max-width:520px;margin-left:auto;margin-right:auto;">Our proven process guides every student — CC transfer or international — from assessment to graduation support.</p>
+    <div class="journey-steps">
+      <div class="jstep">
+        <div class="jstep-circle">💬</div>
+        <h4>Free Assessment</h4>
+        <p>Goals, credits & situation</p>
+      </div>
+      <div class="journey-arrow">→</div>
+      <div class="jstep">
+        <div class="jstep-circle">🗺️</div>
+        <h4>Your Roadmap</h4>
+        <p>Programs & scholarships matched</p>
+      </div>
+      <div class="journey-arrow">→</div>
+      <div class="jstep">
+        <div class="jstep-circle">📋</div>
+        <h4>Application Support</h4>
+        <p>Every form & deadline handled</p>
+      </div>
+      <div class="journey-arrow">→</div>
+      <div class="jstep">
+        <div class="jstep-circle">✅</div>
+        <h4>Enrolled</h4>
+        <p>Accepted & confirmed</p>
+      </div>
+      <div class="journey-arrow">→</div>
+      <div class="jstep">
+        <div class="jstep-circle">🎓</div>
+        <h4>First Semester</h4>
+        <p>Ongoing support to completion</p>
+      </div>
+    </div>
+    <div style="margin-top:40px;">
+      <a href="transfers.html" class="btn btn-navy">See How Transfers Work</a>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════ DISCOVER ═══════════════════════ -->
+<section class="discover section">
+  <span class="section-tag">Discover Your Next Step</span>
+  <h2 class="h2">Programs Built Around<br>Your Real Life</h2>
+  <p style="color:var(--text-mid);margin-top:14px;font-size:1.02rem;max-width:520px;line-height:1.72;">Whether you're exploring or ready to go — we connect you with the right program, format, and financial support.</p>
+  <div class="discover-grid">
+    <div class="discover-card cc">
+      <span class="pill" style="background:var(--teal-light);color:var(--teal-dark);width:fit-content;">🏫 For CC Students</span>
+      <h3>Flexible Degrees That Transfer Your Credits</h3>
+      <p>Bachelor's degrees in tech, business, health, and more — in the format that works around your job and family. CC credits transfer, scholarship guaranteed.</p>
+      <div class="dc-features">
+        <div class="dc-feat">
+          <div class="dc-feat-dot" style="background:var(--teal-light);color:var(--teal-dark);">✓</div>
+          <span style="font-size:0.87rem;color:var(--text-mid);">Online, hybrid, and traditional formats</span>
+        </div>
+        <div class="dc-feat">
+          <div class="dc-feat-dot" style="background:var(--teal-light);color:var(--teal-dark);">✓</div>
+          <span style="font-size:0.87rem;color:var(--text-mid);">Guaranteed scholarship & spread payment plans</span>
+        </div>
+        <div class="dc-feat">
+          <div class="dc-feat-dot" style="background:var(--teal-light);color:var(--teal-dark);">✓</div>
+          <span style="font-size:0.87rem;color:var(--text-mid);">Career-focused programs across 6+ fields</span>
+        </div>
+      </div>
+      <a href="program.html" class="btn btn-navy" style="width:fit-content;">Explore Programs →</a>
+    </div>
+    <div class="discover-card intl">
+      <span class="pill pill-white" style="width:fit-content;">✈️ For International Students</span>
+      <h3 style="color:white;">Visa-Safe Transfers & STEM-Eligible Pathways</h3>
+      <p style="color:rgba(255,255,255,0.62);">Switch to a better-fit program without risking your visa status. SEVIS-compliant, CPT/OPT-eligible, scholarship-backed options available.</p>
+      <div class="dc-features">
+        <div class="dc-feat">
+          <div class="dc-feat-dot" style="background:rgba(31,200,160,0.15);color:var(--teal);">✓</div>
+          <span style="font-size:0.87rem;color:rgba(255,255,255,0.6);">F-1, H-4, L-2, J-1 and more supported</span>
+        </div>
+        <div class="dc-feat">
+          <div class="dc-feat-dot" style="background:rgba(31,200,160,0.15);color:var(--teal);">✓</div>
+          <span style="font-size:0.87rem;color:rgba(255,255,255,0.6);">STEM OPT & integrated CPT programs</span>
+        </div>
+        <div class="dc-feat">
+          <div class="dc-feat-dot" style="background:rgba(31,200,160,0.15);color:var(--teal);">✓</div>
+          <span style="font-size:0.87rem;color:rgba(255,255,255,0.6);">Attorney network for Change of Status cases</span>
+        </div>
+      </div>
+      <a href="transfers.html#intl" class="btn btn-teal" style="width:fit-content;">Find Your Transfer Path →</a>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════ TESTIMONIALS ═══════════════════════ -->
+<section class="testimonials section" style="background:var(--off-white);">
+  <span class="section-tag">Real Student Stories</span>
+  <h2 class="h2">Transfers That Changed Lives</h2>
+  <div style="height:32px;"></div>
+  <div class="test-grid">
+    <div class="test-card">
+      <span class="pill pill-teal test-chip">🏫 CC Transfer</span>
+      <p class="test-quote">"I spent two years at my community college not knowing how to make the move. STE mapped out my entire transfer in one call — I enrolled at a state university the following semester with most of my credits accepted."</p>
+      <span class="test-cite">Maria — CC → State University, Business Administration</span>
+    </div>
+    <div class="test-card">
+      <span class="pill test-chip" style="background:#FFF3CD;color:#7A5000;">🏫 Hybrid Degree</span>
+      <p class="test-quote">"I work full-time and couldn't afford to move cities. STE found me a hybrid program where I study online and go to campus for four days each semester. I'm finishing my degree without giving up my income."</p>
+      <span class="test-cite">James — CC → Hybrid Bachelor's, Computer Science</span>
+    </div>
+    <div class="test-card">
+      <span class="pill pill-purple test-chip">✈️ International</span>
+      <p class="test-quote">"My university had accreditation concerns and I didn't want it to affect my future. STE helped me transfer into a fully accredited school within two weeks, maintaining my visa status throughout."</p>
+      <span class="test-cite">Priya — Emergency University Transfer</span>
+    </div>
+    <div class="test-card">
+      <span class="pill pill-purple test-chip">✈️ International</span>
+      <p class="test-quote">"After two visa rejections, STE helped me refine my Statement of Purpose and select a strong program. I finally got my F-1 approved and started my STEM master's in the U.S."</p>
+      <span class="test-cite">Ahmed — STEM Master's Program</span>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════ FOR COLLEGES STRIP ═══════════════════════ -->
+<section class="section" style="background:var(--navy);">
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center;">
+    <div>
+      <span class="section-tag">For Community College Leaders</span>
+      <h2 class="h2 text-white">Partner With STE to Close the Transfer Gap</h2>
+      <p style="color:rgba(255,255,255,0.65);margin-top:14px;margin-bottom:32px;font-size:1rem;line-height:1.72;">Extend your advising team's reach, improve transfer and completion metrics tied to state funding, and give your students a clear, supported pathway to a bachelor's degree.</p>
+      <a href="for-colleges.html" class="btn btn-teal btn-lg">Explore the Partnership →</a>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:14px;">
+      <div style="background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);border-radius:var(--radius);padding:18px 22px;display:flex;gap:16px;align-items:center;">
+        <span style="font-family:'Sora',sans-serif;font-size:1.6rem;font-weight:800;color:var(--teal);flex-shrink:0;">2×</span>
+        <span style="font-size:0.88rem;color:rgba(255,255,255,0.6);line-height:1.5;">Improvement in transfer + completion metrics at STE partner colleges</span>
+      </div>
+      <div style="background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);border-radius:var(--radius);padding:18px 22px;display:flex;gap:16px;align-items:center;">
+        <span style="font-family:'Sora',sans-serif;font-size:1.6rem;font-weight:800;color:var(--teal);flex-shrink:0;">Free</span>
+        <span style="font-size:0.88rem;color:rgba(255,255,255,0.6);line-height:1.5;">60-min discovery call + complimentary Transfer Readiness Assessment</span>
+      </div>
+      <div style="background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);border-radius:var(--radius);padding:18px 22px;display:flex;gap:16px;align-items:center;">
+        <span style="font-family:'Sora',sans-serif;font-size:1.6rem;font-weight:800;color:var(--teal);flex-shrink:0;">90d</span>
+        <span style="font-size:0.88rem;color:rgba(255,255,255,0.6);line-height:1.5;">Optional pilot program before full commitment — low risk, high insight</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════ FINAL CTA ═══════════════════════ -->
+<section class="final-cta">
+  <div class="final-cta-inner">
+    <span class="section-tag" style="color:var(--teal);display:block;text-align:center;margin-bottom:16px;">Ready?</span>
+    <h2 class="h2">Start Your Transfer Journey Today</h2>
+    <p>Intelligent program matching • Personalized transfer roadmap • One-on-one expert support from enrollment to first semester.</p>
+    <div class="final-cta-btns">
+      <a href="https://form.typeform.com/to/HRz41hcQ" target="_blank" class="btn btn-teal btn-lg">Start My Transfer →</a>
+      <a href="https://gpt.studenttransferexperts.com/" target="_blank" class="btn btn-outline-white btn-lg">Ask STE GPT</a>
+    </div>
+    <p class="final-cta-sub">Not sure where to start? Our AI-powered GPT can answer questions 24/7 before you book your free assessment.</p>
+  </div>
+</section>
+
+<!-- ═══════════════════════ FOOTER ═══════════════════════ -->
+<footer class="footer">
+  <div class="footer-top">
+    <div class="footer-brand-col">
+      <span class="footer-logo">Student Transfer<span class="accent">Experts</span>.com</span>
+      <p class="footer-tagline">Helping community college students and international students transfer, transition, and thrive. Seamless transfers, bright futures.</p>
+      <div class="footer-contact">
+        <a href="mailto:welcome@studenttransferexperts.com"><span class="footer-contact-icon">✉</span> welcome@studenttransferexperts.com</a>
+        <a href="tel:+16183614188"><span class="footer-contact-icon">📞</span> (618) 361-4188</a>
+        <a href="mailto:partnerships@studenttransferexperts.com"><span class="footer-contact-icon">🤝</span> partnerships@studenttransferexperts.com</a>
+      </div>
+    </div>
+    <div class="footer-col">
+      <h4>Navigation</h4>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="program.html">Program</a></li>
+        <li><a href="transfers.html">Transfers</a></li>
+        <li><a href="for-colleges.html">For Colleges</a></li>
+        <li><a href="https://www.studenttransferexperts.com/new-blog" target="_blank">Blog</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Students</h4>
+      <ul>
+        <li><a href="transfers.html#cc">CC Transfer Paths</a></li>
+        <li><a href="transfers.html#intl">International Transfers</a></li>
+        <li><a href="program.html#cc">Programs for CC Students</a></li>
+        <li><a href="program.html#intl">Programs for Intl Students</a></li>
+        <li><a href="https://gpt.studenttransferexperts.com/" target="_blank">Ask STE GPT</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Institutions</h4>
+      <ul>
+        <li><a href="for-colleges.html">Partnership Overview</a></li>
+        <li><a href="for-colleges.html#how-it-works">How It Works</a></li>
+        <li><a href="for-colleges.html#gains">What Colleges Gain</a></li>
+        <li><a href="mailto:partnerships@studenttransferexperts.com">Contact Partnerships</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p class="footer-copy">© 2025 <span>StudentTransferExperts.com</span> — SkillWave Ventures, Inc. All rights reserved.</p>
+    <p class="footer-copy">2261 Market Street, STE 85912, San Francisco, CA 94114</p>
+  </div>
+</footer>
+
+<script>
+function toggleNav() {
+  document.getElementById('navDrawer').classList.toggle('open');
+}
+</script>
+</body>
+</html>
